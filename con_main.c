@@ -2,10 +2,13 @@
 
 int who_are_you();
 
+
+
 int main()
 {
     int signal = 1;
     int choose;
+    int choose2;
 
 
     struct student {
@@ -15,27 +18,36 @@ int main()
 
     const char *start_menu[] = {
         "1.학생 점수 출력",
-        "2.학생 추가",
-        "3.학생 삭제",
-        "4.프로그램 종료",
+        "2.평균 점수",
+        "3.프로그램 종료",
     };
 
     
 
     if(who_are_you == 1)
-        printf("접속 완료!!");
+        printf("접속 완료!!\n");
     else return 0;
 
     char class_name;
     int class_num;
     printf("반 이름:");
-    scanf("%s",class_name);
+    scanf("%s",&class_name);
 
     printf("총 명수:");
-    scanf("%d",class_num);
+    scanf("%d",&class_num);
 
-    struct student s[class_num];
-    for(int i = 1;  i< class_num; i++)
+    struct student slist[class_num];
+    for(int i = 0;  i< class_num; i++){
+        printf("%d번 학생 이름:",i+1);
+        scanf("%s",&slist[i].name);
+
+        printf("%d번 학생 점수:",i+1);
+        scanf("%d",&slist[i].score);  
+    }
+
+    printf("%s반 %d명 저장 완료!",class_name,class_num);
+
+
 
 
 
@@ -56,18 +68,32 @@ int main()
 
         switch(choose){
             case 1:
-                printf("1번 실행!");
+                printf("1.출력\n2.점수 순서대로 출력\n3.이름 순서대로 출력");
+                scnaf("%d", &choose2);
+
+                switch(choose2){
+                    case 1:
+                        printf("출력 실행!\n");
+                        print_1(slist,class_num);
+                        break;
+                    case 2:
+                        printf("점수 순서대로 출력 실행! \n");
+                        break;
+                    case 3:
+                        printf("이름 순서대로 출력 실행! \n");
+                        break;
+                }
+
+
                 break;
             case 2:
                 printf("2번 실행!");
                 break;
             case 3:
                 printf("3번 실행!");
-                break;
-            case 4:
-                printf("4번 실행!");
                 printf("프로그램 종료!");
-                return 0;
+                signal = 0;
+                break;
             default:
                 printf("잘못 입력하셨습니다.");
         }
@@ -107,8 +133,11 @@ int who_are_you(void)
     return 1;
 }
 
-void make_class()
+void print_1(struct student **slist, int size)
 {
+    for(int i = 0; i < size; i++){
+        printf("%d. 이름: %s, 점수: %d\n",i+1, slist[i]->name,  slist[i]->score);
+    }
 
 
 
