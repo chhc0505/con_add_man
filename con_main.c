@@ -7,16 +7,49 @@ int main()
     int signal = 1;
     int choose;
 
+
+    struct student {
+        char name;
+        int score;
+    };
+
+    const char *start_menu[] = {
+        "1.학생 점수 출력",
+        "2.학생 추가",
+        "3.학생 삭제",
+        "4.프로그램 종료",
+    };
+
+    
+
     if(who_are_you == 1)
         printf("접속 완료!!");
     else return 0;
 
+    char class_name;
+    int class_num;
+    printf("반 이름:");
+    scanf("%s",class_name);
+
+    printf("총 명수:");
+    scanf("%d",class_num);
+
+    struct student s[class_num];
+    for(int i = 1;  i< class_num; i++)
+
+
+
+
+
+
+
+
 
     while(signal){
-        printf("1.연락처 출력\n");
-        printf("2.연락처 추가\n");
-        printf("3.연락처 삭제\n");
-        printf("4.프로그램 종료\n");
+        int i;
+        for (i=0; i<4; i++){
+            printf("%s\n" , start_menu[i]);
+        }
 
         printf("1 / 2 / 3 / 4 입력:");
         scanf("%d" , &choose);
@@ -72,6 +105,13 @@ int who_are_you(void)
     }
     
     return 1;
+}
+
+void make_class()
+{
+
+
+
 }
 
 
