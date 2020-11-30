@@ -9,7 +9,7 @@ struct student{
 int who_are_you();
 void base_pr(struct student *, int);
 void num_sequence_pr(struct student [], int);
-int  get_average(struct student [], int);
+double  get_average(struct student [], int);
 
 int main()
 {
@@ -81,7 +81,8 @@ int main()
                 }
                 break;
             case 2:
-                printf("2번 실행!\n");
+                printf("평균 구하기 실행!\n");
+				printf("%s반 평균:%.2f\n\n",class_name, get_average(slist,class_num));
                 break;
             case 3:
                 printf("3번 실행!\n");
@@ -177,10 +178,15 @@ void num_sequence_pr(struct student slist[], int size){
 	printf("--------------------------------------\n");
 }
 
-int get_average(struct student slist[], int size){
+double get_average(struct student slist[], int size){
 
+	int i;
+	int sum = 0;
 
-
+	for(i = 0; i<size; i++){
+		sum= sum + slist[i].score;
+	}
+	return sum / size;
 }
 
 
