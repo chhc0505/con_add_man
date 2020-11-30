@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 struct student{
-	char name[10];
+	char name[20];
 	int score;
 };
 
@@ -20,7 +20,7 @@ int main()
         printf("접속 완료!!\n\n\n");
     else return 0;
 
-    char class_name[10];
+    char class_name[20]={0};
     int class_num;
     printf("반 이름:");
     scanf("%s", class_name);
@@ -98,21 +98,22 @@ int who_are_you(void)
 {
     
     struct user {
-        char name[10];
+        char name[7];
         int pass;    
     };
 
-    struct user master = {"J" ,5555};
+    struct user master = {"Jinseok" ,5555};
     struct user guest;
 
     printf("사용자 이름 입력:");
-    printf("%s", master.name);
 	scanf("%s",guest.name);
-    if(master.name[0] != guest.name[0]){
-        printf("이름 불일치!\n");
-        printf("프로그램을 종료합니다!\n");
-        return 0;
-    }
+	for(int i =0; i<7; i++){
+   		if(master.name[i] != guest.name[i]){
+    		printf("이름 불일치!\n");
+        	printf("프로그램을 종료합니다!\n");
+        	return 0;
+    	}
+	}
     
     printf("비밀번호 입력:");
     scanf("%d", &guest.pass);
