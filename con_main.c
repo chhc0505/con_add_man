@@ -9,6 +9,8 @@ struct student{
 int who_are_you();
 void base_pr(struct student *, int);
 void num_sequence_pr(struct student [], int);
+int  get_average(struct student [], int);
+
 int main()
 {
     int signal = 1;
@@ -175,7 +177,11 @@ void num_sequence_pr(struct student slist[], int size){
 	printf("--------------------------------------\n");
 }
 
+int get_average(struct student slist[], int size){
 
+
+
+}
 
 
 
