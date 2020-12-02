@@ -9,7 +9,8 @@ struct student{
 int who_are_you();
 void base_pr(struct student *, int);
 void num_sequence_pr(struct student [], int);
-double  get_average(struct student [], int);
+void spell_sequence_pr(struct student [], int);
+double get_average(struct student [], int);
 
 int main()
 {
@@ -36,7 +37,9 @@ int main()
         scanf("%s",slist[i].name);
 
         printf("%d번 학생 점수:",i+1);
-        scanf("%d",&slist[i].score);  
+        scanf("%d",&slist[i].score);
+		printf("\n\n");
+  
     }
 
     printf("%s반 %d명 저장 완료!\n\n\n", class_name, class_num);
@@ -77,7 +80,8 @@ int main()
                         break;
                     case 3:
                         printf("이름 순서대로 출력 실행! \n");
-                        break;
+                        spell_sequence_pr(slist,class_num);
+						break;
                 }
                 break;
             case 2:
@@ -91,11 +95,15 @@ int main()
                 break;
             default:
                 printf("잘못 입력하셨습니다.\n");
+				signal = 0;
         }
 
     
 
     }
+
+
+	return 0;
 }
 int who_are_you(void)
 {
@@ -129,22 +137,23 @@ int who_are_you(void)
     
     return 1;
 }
+	
+
 
 void base_pr(struct student *slist, int size)
 {
 	printf("-------------------------------------\n");
     for(int i = 0; i < size; i++){
         printf("%d. 이름: %s, 점수: %d\n",i+1, (slist+i)->name, (slist+i)->score);
-    }
+    
 	printf("-------------------------------------\n");
-
+	}
 
 
 }
 
 void num_sequence_pr(struct student slist[], int size){
 	
-	struct student prlist[size];
 	int maxi;
 	char temp_ch[10];
 	int temp_in;	
@@ -172,11 +181,53 @@ void num_sequence_pr(struct student slist[], int size){
 
 	printf("--------------------------------------\n");
 	for(int k = 0; k < size; k++){
-		printf("%d.이름: %s   점수: %d\n",k+1,slist[k].name,slist[k].score); 
+		printf("%d.이름: %s   점수: %d\n",k+1,slist[k].name,slist[k].score);
+	printf("--------------------------------------\n");
 
 	}
-	printf("--------------------------------------\n");
 }
+
+
+ 
+void spell_sequence_pr(struct student slist[], int size){
+	
+	int min;
+	int temp_in;
+	char temp_ch[10];
+
+	for(int i=0; i<size-1; i++){
+		min = i;
+		for(int j=i+1; j<size; j++){
+			if(strcmp(slist[j].name,slist[min].name) < 0){
+				min = j;
+			}
+		
+		}
+		
+
+	
+
+		strcpy(temp_ch, slist[i].name);
+		temp_in = slist[i].score;
+
+		strcpy(slist[i].name, slist[min].name);
+		slist[i].score = slist[min].score;
+
+		strcpy(slist[min].name, temp_ch);
+		slist[min].score = temp_in;
+
+
+	}
+	
+	printf("--------------------------------------\n");
+	for(int k = 0; k < size; k++){
+		printf("%d.이름: %s   점수: %d\n",k+1,slist[k].name,slist[k].score);
+	printf("--------------------------------------\n");
+
+	}
+}	
+
+
 
 double get_average(struct student slist[], int size){
 
